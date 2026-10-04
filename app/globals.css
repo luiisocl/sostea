@@ -1,26 +1,249 @@
 @import "tailwindcss";
 
+/* ============================================================
+   SOSTEA — design tokens
+   Todas as cores, fontes e tamanhos do site vêm daqui.
+   As cores padrão do Tailwind foram removidas de propósito:
+   só existem as classes definidas neste tema.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta padrão */
+  --c-papel: #f7f3ec;
+  --c-papel-escuro: #efe9df;
+  --c-tinta: #1c2430;
+  --c-tinta-suave: #4a5361;
+  --c-fio: #d8d0c3;
+  --c-fio-forte: #9a9182;
+  --c-destaque: #1f5c5a;
+  --c-destaque-escuro: #154442;
+  --c-argila: #a4532f;
+  --c-erro: #9b2c22;
+  --c-sucesso: #2e5e3a;
+
+  --transicao: 150ms ease;
+}
+
+/* Modo "Reduzir estímulos": cores mais apagadas, sem transições */
+:root[data-estimulos="reduzidos"] {
+  --c-papel: #f4f2ee;
+  --c-papel-escuro: #ebe8e2;
+  --c-fio: #d6d2cb;
+  --c-destaque: #3d5654;
+  --c-destaque-escuro: #2f4442;
+  --c-argila: #6e5a50;
+  --transicao: 0s;
+}
+
+/* Tamanho do texto: tudo no site usa rem, então mudar a raiz escala tudo */
+:root[data-texto="grande"] {
+  font-size: 112.5%;
+}
+:root[data-texto="maior"] {
+  font-size: 125%;
+}
+
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --shadow-*: initial;
+  --radius-*: initial;
+
+  --radius-sutil: 0.1875rem;
+
+  /* Escala tipográfica */
+  --text-mini: 0.8125rem;
+  --text-mini--line-height: 1.45;
+  --text-nota: 0.9375rem;
+  --text-nota--line-height: 1.55;
+  --text-corpo: 1.0625rem;
+  --text-corpo--line-height: 1.7;
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.6;
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.3;
+  --text-h2: clamp(1.75rem, 1.45rem + 1vw, 2.25rem);
+  --text-h2--line-height: 1.2;
+  --text-h1: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+  --text-h1--line-height: 1.12;
+  --text-display: clamp(2.5rem, 1.8rem + 2.8vw, 4rem);
+  --text-display--line-height: 1.08;
+
+  /* Larguras: coluna de leitura (~65–70 caracteres) e página */
+  --container-texto: 40rem;
+  --container-pagina: 76rem;
+
+  --tracking-rotulo: 0.08em;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-papel: var(--c-papel);
+  --color-papel-escuro: var(--c-papel-escuro);
+  --color-tinta: var(--c-tinta);
+  --color-tinta-suave: var(--c-tinta-suave);
+  --color-fio: var(--c-fio);
+  --color-fio-forte: var(--c-fio-forte);
+  --color-destaque: var(--c-destaque);
+  --color-destaque-escuro: var(--c-destaque-escuro);
+  --color-argila: var(--c-argila);
+  --color-erro: var(--c-erro);
+  --color-sucesso: var(--c-sucesso);
+
+  --font-titulo: var(--font-newsreader), "Source Serif 4", Georgia, serif;
+  --font-texto: var(--font-atkinson), "Segoe UI", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background-color: var(--c-papel);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-papel text-tinta font-texto text-corpo;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-titulo text-tinta;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--c-destaque);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color var(--transicao), text-decoration-color var(--transicao);
+  }
+  a:hover {
+    color: var(--c-destaque-escuro);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Foco sempre visível ao navegar pelo teclado */
+  :focus-visible {
+    outline: 3px solid var(--c-destaque);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--c-fio);
+    color: var(--c-tinta);
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--c-fio);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Movimento mínimo: respeita a configuração do sistema e o botão do site */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-estimulos="reduzidos"] *,
+:root[data-estimulos="reduzidos"] *::before,
+:root[data-estimulos="reduzidos"] *::after {
+  transition: none !important;
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Texto longo vindo dos artigos (MDX) */
+@layer components {
+  .artigo > * + * {
+    margin-top: 1.1em;
+  }
+  .artigo h2 {
+    @apply text-h3 mt-12 pt-6 border-t border-fio;
+  }
+  .artigo h3 {
+    @apply text-lead mt-8 font-titulo;
+    font-weight: 600;
+  }
+  .artigo ul,
+  .artigo ol {
+    padding-left: 1.25rem;
+  }
+  .artigo ul {
+    list-style: none;
+  }
+  .artigo ul > li {
+    position: relative;
+  }
+  .artigo ul > li::before {
+    content: "";
+    position: absolute;
+    left: -1.1rem;
+    top: 0.8em;
+    width: 0.5rem;
+    border-top: 1px solid var(--c-destaque);
+  }
+  .artigo ol {
+    list-style: decimal;
+  }
+  .artigo li + li {
+    margin-top: 0.5em;
+  }
+  .artigo ol > li::marker {
+    @apply font-titulo text-destaque;
+  }
+  .artigo strong {
+    font-weight: 700;
+  }
+  .artigo blockquote {
+    @apply border-l-2 border-destaque pl-5 font-titulo text-lead italic text-tinta-suave;
+  }
+
+  /* Campos de formulário */
+  .campo {
+    @apply block w-full rounded-sutil border border-tinta-suave bg-papel px-3 py-2.5 text-corpo text-tinta;
+    min-height: 2.75rem;
+  }
+  .campo:hover {
+    border-color: var(--c-tinta);
+  }
+  .campo[aria-invalid="true"] {
+    border-color: var(--c-erro);
+    border-width: 2px;
+  }
+  .campo:disabled {
+    background-color: var(--c-papel-escuro);
+    cursor: not-allowed;
+  }
+
+  .botao {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sutil border border-tinta bg-tinta px-5 py-2.5 text-corpo font-bold text-papel no-underline;
+    transition: background-color var(--transicao);
+  }
+  .botao:hover {
+    @apply bg-destaque-escuro border-destaque-escuro text-papel no-underline;
+  }
+  .botao:disabled,
+  .botao[aria-disabled="true"] {
+    @apply cursor-not-allowed border-fio-forte bg-papel-escuro text-tinta-suave;
+  }
+
+  .rotulo {
+    @apply font-texto text-mini uppercase text-tinta-suave;
+    letter-spacing: var(--tracking-rotulo);
+    font-weight: 700;
+  }
 }

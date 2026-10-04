@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SOSTEA
 
-## Getting Started
+Site informativo sobre o Transtorno do Espectro Autista (TEA) para pessoas autistas, familiares, cuidadores e quem quer aprender. Projeto acadêmico.
 
-First, run the development server:
+Feito com Next.js (App Router) + TypeScript, Tailwind CSS e Supabase. Publicado na Vercel.
+
+## Rodar no seu computador
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install        # só na primeira vez
+npm run dev        # abre em http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Onde editar cada coisa
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| O que | Arquivo |
+|---|---|
+| Cores, fontes e tamanhos (design tokens) | `app/globals.css` |
+| Itens do menu e telefones de emergência | `lib/navegacao.ts` |
+| Membros do grupo, instituição e e-mail de contato | `data/equipe.ts` |
+| Artigos de dicas | `content/dicas/*.mdx` (veja o modelo `_modelo.mdx`) |
+| Fontes oficiais citadas | `lib/fontes.ts` |
+| Perfis do diretório de profissionais | `data/profissionais.ts` e `lib/profissionais.ts` |
+| Valores e chave Pix das doações | `lib/doacoes.ts` |
+| Regras do formulário de cadastro | `lib/validacao.ts` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Adicionar uma dica nova
 
-## Learn More
+1. Copie `content/dicas/_modelo.mdx` e renomeie (ex.: `banho-e-higiene.mdx`). Use só letras minúsculas, números e hífens.
+2. Preencha o bloco `metadata` (título, resumo, categoria e data).
+3. Escreva o texto em Markdown. A dica aparece sozinha na página Dicas.
 
-To learn more about Next.js, take a look at the following resources:
+## Cadastro (Supabase)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Crie um projeto em https://supabase.com.
+2. No **SQL Editor**, cole o conteúdo de `supabase/cadastros.sql` e clique em **Run**.
+3. Em **Project Settings → API Keys**, copie a URL do projeto e a **Publishable key**.
+4. Preencha o arquivo `.env.local` (modelo em `.env.example`).
+5. Reinicie o `npm run dev`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sem essas variáveis, o site funciona normalmente e o formulário mostra um aviso de que o cadastro ainda não está ativo.
 
-## Deploy on Vercel
+Para ver os cadastros, use o **Table Editor** do Supabase, na tabela `cadastros`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Ainda não funcional (só visual)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Profissionais:** para conectar a um banco, troque o corpo de `listarProfissionais()` em `lib/profissionais.ts`.
+- **Doações:** veja as instruções no topo de `lib/doacoes.ts`.
+
+## Acessibilidade
+
+- Botão "Reduzir estímulos" e controle de tamanho do texto em todas as páginas. A escolha fica salva no navegador.
+- Respeita `prefers-reduced-motion`.
+- Contraste WCAG AA verificado com axe-core nos modos normal, reduzido e texto maior.
+- Link "Pular para o conteúdo", foco visível e HTML semântico.
