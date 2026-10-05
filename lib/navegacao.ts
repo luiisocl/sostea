@@ -1,16 +1,26 @@
 // Menu principal: o mesmo em todas as páginas.
-// O número é usado como "número de seção" no topo de cada página.
-export const secoes = [
-  { href: "/entenda", rotulo: "Entenda o TEA", numero: "01" },
-  { href: "/dicas", rotulo: "Dicas", numero: "02" },
-  { href: "/direitos", rotulo: "Direitos", numero: "03" },
-  { href: "/profissionais", rotulo: "Profissionais", numero: "04" },
-  { href: "/cadastro", rotulo: "Cadastro", numero: "05" },
-  { href: "/doe", rotulo: "Doe", numero: "06" },
-  { href: "/sobre", rotulo: "Sobre", numero: "07" },
+export const menu = [
+  { href: "/", rotulo: "Início" },
+  { href: "/biblioteca", rotulo: "Biblioteca" },
+  { href: "/para-familias", rotulo: "Para famílias" },
+  { href: "/para-educadores", rotulo: "Para educadores" },
+  { href: "/profissionais", rotulo: "Profissionais" },
+  { href: "/rede-de-apoio", rotulo: "Rede de apoio" },
+] as const;
+
+// Links do rodapé.
+export const linksRodape = [
+  { href: "/sobre", rotulo: "Sobre o projeto" },
+  { href: "/acessibilidade", rotulo: "Acessibilidade" },
+  { href: "/fontes", rotulo: "Fontes e referências" },
+  { href: "/privacidade", rotulo: "Política de privacidade" },
+  { href: "/sobre#contato", rotulo: "Fale conosco" },
+  { href: "/doe", rotulo: "Doe" },
 ] as const;
 
 export const emergencia = [
   { nome: "SAMU", numero: "192", descricao: "Emergência médica" },
   { nome: "CVV", numero: "188", descricao: "Apoio emocional, 24 horas, gratuito" },
 ] as const;
+
+export const cidade = "Teresina - PI";

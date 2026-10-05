@@ -2,40 +2,86 @@
 
 /* ============================================================
    SOSTEA — design tokens
-   Todas as cores, fontes e tamanhos do site vêm daqui.
-   As cores padrão do Tailwind foram removidas de propósito:
-   só existem as classes definidas neste tema.
+   Todas as cores, fontes, raios e sombras do site vêm daqui.
+   As cores padrão do Tailwind foram removidas: só existem as
+   classes definidas neste tema (ex.: bg-marinho, text-azul).
    ============================================================ */
 
 :root {
-  /* Paleta padrão */
-  --c-papel: #f7f3ec;
-  --c-papel-escuro: #efe9df;
-  --c-tinta: #1c2430;
-  --c-tinta-suave: #4a5361;
-  --c-fio: #d8d0c3;
-  --c-fio-forte: #9a9182;
-  --c-destaque: #1f5c5a;
-  --c-destaque-escuro: #154442;
-  --c-argila: #a4532f;
-  --c-erro: #9b2c22;
-  --c-sucesso: #2e5e3a;
+  /* Base */
+  --c-marinho: #1b2b4b;
+  --c-marinho-escuro: #16233d;
+  --c-azul: #2f64b5;
+  --c-azul-escuro: #234e91;
+  --c-azul-logo: #8db4e2;
+  --c-verde-agua: #5bb5a5;
+  --c-texto: #2b3648;
+  --c-texto-suave: #556274;
+  --c-fundo: #ffffff;
+  --c-fundo-suave: #f5f8fc;
+  --c-faixa: #edf3fb;
+  --c-borda: #e3e8f0;
+  --c-erro: #b42318;
+  --c-sucesso: #1f7a55;
 
-  --transicao: 150ms ease;
+  /* Pastéis: fundo do card, círculo do ícone e cor do ícone/etiqueta */
+  --c-azul-bg: #eef4fc;
+  --c-azul-circ: #d6e5f8;
+  --c-azul-tom: #2f64b5;
+  --c-verde-bg: #ebf6f1;
+  --c-verde-circ: #cdeadd;
+  --c-verde-tom: #22704f;
+  --c-rosa-bg: #fdf0f1;
+  --c-rosa-circ: #f9d8dc;
+  --c-rosa-tom: #a92e42;
+  --c-amarelo-bg: #fff7e4;
+  --c-amarelo-circ: #fde6ae;
+  --c-amarelo-tom: #87560a;
+  --c-lilas-bg: #f4f0fc;
+  --c-lilas-circ: #e2d8f7;
+  --c-lilas-tom: #6248b0;
+
+  /* Caixa "Precisa de ajuda agora?" */
+  --c-alerta-bg: #fff8e7;
+  --c-alerta-borda: #f5dc9c;
+  --c-alerta-titulo: #b03d1c;
+  --c-alerta-num: #f6b547;
+
+  --sombra-cor: 27 43 75;
+  --transicao: 160ms ease;
 }
 
-/* Modo "Reduzir estímulos": cores mais apagadas, sem transições */
+/* Modo "Reduzir estímulos": cores dessaturadas, fotos mais suaves, sem transições */
 :root[data-estimulos="reduzidos"] {
-  --c-papel: #f4f2ee;
-  --c-papel-escuro: #ebe8e2;
-  --c-fio: #d6d2cb;
-  --c-destaque: #3d5654;
-  --c-destaque-escuro: #2f4442;
-  --c-argila: #6e5a50;
+  --c-azul-bg: #f3f5f8;
+  --c-verde-bg: #f3f5f8;
+  --c-rosa-bg: #f3f5f8;
+  --c-amarelo-bg: #f3f5f8;
+  --c-lilas-bg: #f3f5f8;
+  --c-azul-circ: #e3e8ef;
+  --c-verde-circ: #e3e8ef;
+  --c-rosa-circ: #e3e8ef;
+  --c-amarelo-circ: #e3e8ef;
+  --c-lilas-circ: #e3e8ef;
+  --c-azul-tom: #3f5878;
+  --c-verde-tom: #3f5878;
+  --c-rosa-tom: #3f5878;
+  --c-amarelo-tom: #3f5878;
+  --c-lilas-tom: #3f5878;
+  --c-alerta-bg: #f6f5f1;
+  --c-alerta-borda: #e2ded2;
+  --c-alerta-num: #e2ded2;
+  --c-alerta-titulo: #1b2b4b;
+  --c-faixa: #f2f4f7;
+  --c-verde-agua: #9db3b0;
+  --c-azul-logo: #b4c3d6;
   --transicao: 0s;
 }
+:root[data-estimulos="reduzidos"] img {
+  filter: saturate(0.55);
+}
 
-/* Tamanho do texto: tudo no site usa rem, então mudar a raiz escala tudo */
+/* Tamanho do texto: tudo usa rem, então mudar a raiz escala o site inteiro */
 :root[data-texto="grande"] {
   font-size: 112.5%;
 }
@@ -50,7 +96,12 @@
   --shadow-*: initial;
   --radius-*: initial;
 
-  --radius-sutil: 0.1875rem;
+  --radius-campo: 0.625rem;
+  --radius-card: 1rem;
+  --radius-bloco: 1.5rem;
+
+  --shadow-suave: 0 1px 2px rgb(var(--sombra-cor) / 0.04), 0 4px 14px rgb(var(--sombra-cor) / 0.05);
+  --shadow-elevada: 0 2px 4px rgb(var(--sombra-cor) / 0.05), 0 10px 28px rgb(var(--sombra-cor) / 0.08);
 
   /* Escala tipográfica */
   --text-mini: 0.8125rem;
@@ -58,59 +109,94 @@
   --text-nota: 0.9375rem;
   --text-nota--line-height: 1.55;
   --text-corpo: 1.0625rem;
-  --text-corpo--line-height: 1.7;
-  --text-lead: 1.25rem;
-  --text-lead--line-height: 1.6;
-  --text-h3: 1.375rem;
+  --text-corpo--line-height: 1.65;
+  --text-lead: 1.1875rem;
+  --text-lead--line-height: 1.55;
+  --text-h4: 1.0625rem;
+  --text-h4--line-height: 1.3;
+  --text-h3: 1.3125rem;
   --text-h3--line-height: 1.3;
-  --text-h2: clamp(1.75rem, 1.45rem + 1vw, 2.25rem);
+  --text-h2: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
   --text-h2--line-height: 1.2;
-  --text-h1: clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
-  --text-h1--line-height: 1.12;
-  --text-display: clamp(2.5rem, 1.8rem + 2.8vw, 4rem);
-  --text-display--line-height: 1.08;
+  --text-h1: clamp(2rem, 1.6rem + 1.8vw, 2.875rem);
+  --text-h1--line-height: 1.1;
+  --text-display: clamp(2.25rem, 1.6rem + 2.8vw, 3.75rem);
+  --text-display--line-height: 1.05;
+  --text-manuscrito: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --text-manuscrito--line-height: 1.2;
 
-  /* Larguras: coluna de leitura (~65–70 caracteres) e página */
-  --container-texto: 40rem;
-  --container-pagina: 76rem;
+  --container-texto: 42rem;
+  --container-pagina: 90rem;
 
-  --tracking-rotulo: 0.08em;
+  --tracking-rotulo: 0.12em;
 }
 
 @theme inline {
-  --color-papel: var(--c-papel);
-  --color-papel-escuro: var(--c-papel-escuro);
-  --color-tinta: var(--c-tinta);
-  --color-tinta-suave: var(--c-tinta-suave);
-  --color-fio: var(--c-fio);
-  --color-fio-forte: var(--c-fio-forte);
-  --color-destaque: var(--c-destaque);
-  --color-destaque-escuro: var(--c-destaque-escuro);
-  --color-argila: var(--c-argila);
+  --color-marinho: var(--c-marinho);
+  --color-marinho-escuro: var(--c-marinho-escuro);
+  --color-azul: var(--c-azul);
+  --color-azul-escuro: var(--c-azul-escuro);
+  --color-azul-logo: var(--c-azul-logo);
+  --color-verde-agua: var(--c-verde-agua);
+  --color-texto: var(--c-texto);
+  --color-texto-suave: var(--c-texto-suave);
+  --color-fundo: var(--c-fundo);
+  --color-fundo-suave: var(--c-fundo-suave);
+  --color-faixa: var(--c-faixa);
+  --color-borda: var(--c-borda);
   --color-erro: var(--c-erro);
   --color-sucesso: var(--c-sucesso);
+  --color-branco: #ffffff;
 
-  --font-titulo: var(--font-newsreader), "Source Serif 4", Georgia, serif;
+  --color-azul-bg: var(--c-azul-bg);
+  --color-azul-circ: var(--c-azul-circ);
+  --color-azul-tom: var(--c-azul-tom);
+  --color-verde-bg: var(--c-verde-bg);
+  --color-verde-circ: var(--c-verde-circ);
+  --color-verde-tom: var(--c-verde-tom);
+  --color-rosa-bg: var(--c-rosa-bg);
+  --color-rosa-circ: var(--c-rosa-circ);
+  --color-rosa-tom: var(--c-rosa-tom);
+  --color-amarelo-bg: var(--c-amarelo-bg);
+  --color-amarelo-circ: var(--c-amarelo-circ);
+  --color-amarelo-tom: var(--c-amarelo-tom);
+  --color-lilas-bg: var(--c-lilas-bg);
+  --color-lilas-circ: var(--c-lilas-circ);
+  --color-lilas-tom: var(--c-lilas-tom);
+
+  --color-alerta-bg: var(--c-alerta-bg);
+  --color-alerta-borda: var(--c-alerta-borda);
+  --color-alerta-titulo: var(--c-alerta-titulo);
+  --color-alerta-num: var(--c-alerta-num);
+
+  --font-titulo: var(--font-jakarta), "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --font-texto: var(--font-atkinson), "Segoe UI", system-ui, sans-serif;
+  --font-manuscrita: var(--font-caveat), "Segoe Print", cursive;
 }
 
 @layer base {
   html {
-    background-color: var(--c-papel);
+    background-color: var(--c-fundo);
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-papel text-tinta font-texto text-corpo;
+    @apply bg-fundo font-texto text-corpo text-texto;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-titulo text-tinta;
-    font-weight: 500;
+    @apply font-titulo text-marinho;
+    font-weight: 800;
+    letter-spacing: -0.015em;
     text-wrap: balance;
+  }
+  h3,
+  h4 {
+    font-weight: 700;
+    letter-spacing: -0.005em;
   }
 
   p,
@@ -119,36 +205,32 @@
   }
 
   a {
-    color: var(--c-destaque);
-    text-decoration-line: underline;
-    text-decoration-thickness: 1px;
+    color: var(--c-azul);
     text-underline-offset: 0.2em;
-    transition: color var(--transicao), text-decoration-color var(--transicao);
+    transition: color var(--transicao);
   }
-  a:hover {
-    color: var(--c-destaque-escuro);
-    text-decoration-thickness: 2px;
+  /* Links no meio do texto também são sublinhados (não dependem só da cor). */
+  :where(p, li, dd, td) a:not([class]) {
+    text-decoration: underline;
   }
 
-  /* Foco sempre visível ao navegar pelo teclado */
+  a:hover {
+    color: var(--c-azul-escuro);
+  }
+
   :focus-visible {
-    outline: 3px solid var(--c-destaque);
+    outline: 3px solid var(--c-azul);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 6px;
   }
 
   ::selection {
-    background-color: var(--c-fio);
-    color: var(--c-tinta);
-  }
-
-  hr {
-    border: 0;
-    border-top: 1px solid var(--c-fio);
+    background-color: var(--c-azul-circ);
+    color: var(--c-marinho);
   }
 }
 
-/* Movimento mínimo: respeita a configuração do sistema e o botão do site */
+/* Movimento mínimo: respeita a configuração do sistema e o modo do site */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -166,84 +248,113 @@
   scroll-behavior: auto !important;
 }
 
-/* Texto longo vindo dos artigos (MDX) */
 @layer components {
-  .artigo > * + * {
-    margin-top: 1.1em;
+  .container-pagina {
+    @apply mx-auto w-full max-w-pagina px-5 sm:px-8;
   }
-  .artigo h2 {
-    @apply text-h3 mt-12 pt-6 border-t border-fio;
+
+  .rotulo {
+    @apply font-titulo text-mini font-bold uppercase text-azul;
+    letter-spacing: var(--tracking-rotulo);
   }
-  .artigo h3 {
-    @apply text-lead mt-8 font-titulo;
-    font-weight: 600;
+
+  /* Botões */
+  .botao {
+    @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full px-6 font-titulo text-nota font-bold no-underline;
+    transition: background-color var(--transicao), color var(--transicao);
   }
-  .artigo ul,
-  .artigo ol {
-    padding-left: 1.25rem;
+  /* Use junto com .botao: class="botao botao-escuro" */
+  .botao-escuro {
+    @apply bg-marinho text-branco;
   }
-  .artigo ul {
-    list-style: none;
+  .botao-escuro:hover {
+    @apply bg-azul-escuro text-branco;
   }
-  .artigo ul > li {
-    position: relative;
+  .botao-claro {
+    @apply bg-faixa text-marinho;
   }
-  .artigo ul > li::before {
-    content: "";
-    position: absolute;
-    left: -1.1rem;
-    top: 0.8em;
-    width: 0.5rem;
-    border-top: 1px solid var(--c-destaque);
+  .botao-claro:hover {
+    @apply bg-azul-circ text-marinho;
   }
-  .artigo ol {
-    list-style: decimal;
+  .botao:disabled,
+  .botao[aria-disabled="true"] {
+    @apply cursor-not-allowed bg-borda text-texto-suave;
   }
-  .artigo li + li {
-    margin-top: 0.5em;
+
+  /* Link "Ver todos →" */
+  .link-seta {
+    @apply inline-flex items-center gap-1.5 font-titulo text-nota font-bold text-azul no-underline;
   }
-  .artigo ol > li::marker {
-    @apply font-titulo text-destaque;
+  .link-seta:hover {
+    @apply text-azul-escuro underline;
   }
-  .artigo strong {
-    font-weight: 700;
+
+  /* Cartões */
+  .card {
+    @apply rounded-card border border-borda bg-fundo shadow-suave;
   }
-  .artigo blockquote {
-    @apply border-l-2 border-destaque pl-5 font-titulo text-lead italic text-tinta-suave;
+
+  /* Etiqueta pequena (Saúde bucal, Rotina…) */
+  .etiqueta {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 font-titulo text-mini font-bold uppercase leading-none;
+    letter-spacing: 0.06em;
   }
 
   /* Campos de formulário */
   .campo {
-    @apply block w-full rounded-sutil border border-tinta-suave bg-papel px-3 py-2.5 text-corpo text-tinta;
-    min-height: 2.75rem;
+    @apply block w-full rounded-campo border border-borda bg-fundo px-4 py-3 text-corpo text-texto;
+    min-height: 3rem;
+    border-color: #b7c1cf;
   }
   .campo:hover {
-    border-color: var(--c-tinta);
+    border-color: var(--c-texto-suave);
   }
   .campo[aria-invalid="true"] {
     border-color: var(--c-erro);
     border-width: 2px;
   }
   .campo:disabled {
-    background-color: var(--c-papel-escuro);
+    background-color: var(--c-fundo-suave);
     cursor: not-allowed;
   }
 
-  .botao {
-    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sutil border border-tinta bg-tinta px-5 py-2.5 text-corpo font-bold text-papel no-underline;
-    transition: background-color var(--transicao);
+  /* Textos longos (artigos em MDX) */
+  .artigo > * + * {
+    margin-top: 1.1em;
   }
-  .botao:hover {
-    @apply bg-destaque-escuro border-destaque-escuro text-papel no-underline;
+  .artigo h2 {
+    @apply mt-10 text-h3;
   }
-  .botao:disabled,
-  .botao[aria-disabled="true"] {
-    @apply cursor-not-allowed border-fio-forte bg-papel-escuro text-tinta-suave;
+  .artigo h3 {
+    @apply mt-8 text-h4;
   }
-
-  .rotulo {
-    @apply font-texto text-mini uppercase text-tinta-suave;
-    letter-spacing: var(--tracking-rotulo);
+  .artigo a {
+    text-decoration: underline;
+  }
+  .artigo ul,
+  .artigo ol {
+    padding-left: 1.4rem;
+  }
+  .artigo ul {
+    list-style: disc;
+  }
+  .artigo ul > li::marker {
+    color: var(--c-azul);
+  }
+  .artigo ol {
+    list-style: decimal;
+  }
+  .artigo ol > li::marker {
+    @apply font-titulo font-bold text-azul;
+  }
+  .artigo li + li {
+    margin-top: 0.45em;
+  }
+  .artigo strong {
     font-weight: 700;
+    color: var(--c-marinho);
+  }
+  .artigo blockquote {
+    @apply rounded-card bg-faixa px-5 py-4 text-marinho;
   }
 }

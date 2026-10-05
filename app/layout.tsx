@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Atkinson_Hyperlegible, Newsreader } from "next/font/google";
-import { BarraAcessibilidade } from "@/components/BarraAcessibilidade";
+import { Atkinson_Hyperlegible, Caveat, Plus_Jakarta_Sans } from "next/font/google";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Rodape } from "@/components/Rodape";
 import { scriptInicial } from "@/lib/preferencias";
 import "./globals.css";
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -21,20 +20,27 @@ const atkinson = Atkinson_Hyperlegible({
   display: "swap",
 });
 
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "SOSTEA — Informação sobre o espectro autista",
+    default: "SOSTEA — Informação que acolhe",
     template: "%s · SOSTEA",
   },
   description:
-    "Informação clara e confiável sobre o Transtorno do Espectro Autista (TEA) para pessoas autistas, familiares, cuidadores e quem quer aprender.",
+    "Orientações práticas, conteúdos educativos e uma rede de apoio para o dia a dia de crianças com Transtorno do Espectro Autista (TEA) em Teresina - PI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${newsreader.variable} ${atkinson.variable} antialiased`}
+      className={`${jakarta.variable} ${atkinson.variable} ${caveat.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -43,11 +49,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-screen flex-col">
         <a
           href="#conteudo"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-tinta focus:px-4 focus:py-3 focus:text-papel"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-marinho focus:px-5 focus:py-3 focus:text-branco"
         >
           Pular para o conteúdo
         </a>
-        <BarraAcessibilidade />
         <Cabecalho />
         <main id="conteudo" tabIndex={-1} className="flex-1 focus:outline-none">
           {children}

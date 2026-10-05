@@ -1,138 +1,142 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useState } from "react";
-import {
-  especialidades,
-  nomeEspecialidade,
-  type Profissional,
-} from "@/lib/profissionais";
+import { MapPin, Search } from "lucide-react";
+import { especialidades, type Profissional } from "@/lib/profissionais";
 
-const nomesPublico = { criancas: "crianças", adolescentes: "adolescentes", adultos: "adultos" };
+type Props = {
+  profissionais: Profissional[];
+  /** ids de especialidade mostrados como pílulas */
+  filtros: string[];
+  /** "home": cards compactos em linha; "completo": cards com mais detalhes */
+  variante?: "home" | "completo";
+  /** máximo de cards (home) */
+  limite?: number;
+};
 
-export function DiretorioProfissionais({ profissionais }: { profissionais: Profissional[] }) {
-  const [especialidade, setEspecialidade] = useState("");
-  const [cidade, setCidade] = useState("");
-  const avisoId = useId();
+function iniciais(nome: string) {
+  return nome
+    .replace(/\(.*\)/, "")
+    .trim()
+    .split(/\s+/)
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join("");
+}
 
-  const cidades = [...new Set(profissionais.map((p) => `${p.cidade} — ${p.uf}`))].sort((a, b) =>
-    a.localeCompare(b, "pt-BR"),
-  );
+export function DiretorioProfissionais({ profissionais, filtros, variante = "completo", limite }: Props) {
+  const [busca, setBusca] = useState("");
+  const [filtro, setFiltro] = useState<string>("");
+  const idBusca = useId();
+  const idAviso = useId();
 
+  const termo = busca.trim().toLowerCase();
   const filtrados = profissionais.filter(
     (p) =>
-      (!especialidade || p.especialidade === especialidade) &&
-      (!cidade || `${p.cidade} — ${p.uf}` === cidade),
+      (!filtro || p.especialidade === filtro) &&
+      (!termo || [p.nome, p.area, p.descricao, p.cidade].join(" ").toLowerCase().includes(termo)),
   );
+  const visiveis = limite ? filtrados.slice(0, limite) : filtrados;
+  const pilulas = [{ id: "", nome: "Todos" }, ...especialidades.filter((e) => filtros.includes(e.id))];
 
   return (
     <div>
-      <form
-        role="search"
-        aria-label="Filtrar profissionais"
-        onSubmit={(e) => e.preventDefault()}
-        className="grid gap-4 border-y border-tinta bg-papel-escuro px-4 py-5 sm:grid-cols-[1fr_1fr_auto] sm:items-end"
-      >
-        <div>
-          <label htmlFor="filtro-especialidade" className="mb-1.5 block text-nota font-bold">
-            Especialidade
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
+        <div className="relative lg:w-80">
+          <label htmlFor={idBusca} className="sr-only">
+            Buscar profissionais por nome, área ou palavra-chave
           </label>
-          <select
-            id="filtro-especialidade"
-            className="campo"
-            value={especialidade}
-            onChange={(e) => setEspecialidade(e.target.value)}
-          >
-            <option value="">Todas</option>
-            {especialidades.map((e) => (
-              <option key={e.id} value={e.id}>
-                {e.nome}
-              </option>
-            ))}
-          </select>
+          <Search aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 h-4.5 w-4.5 -translate-y-1/2 text-texto-suave" />
+          <input
+            id={idBusca}
+            type="search"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            placeholder="Buscar por nome, área ou palavra-chave..."
+            className="h-11 w-full rounded-full border border-borda bg-fundo pr-4 pl-11 text-nota placeholder:text-texto-suave"
+          />
         </div>
-        <div>
-          <label htmlFor="filtro-cidade" className="mb-1.5 block text-nota font-bold">
-            Cidade
-          </label>
-          <select
-            id="filtro-cidade"
-            className="campo"
-            value={cidade}
-            onChange={(e) => setCidade(e.target.value)}
-          >
-            <option value="">Todas</option>
-            {cidades.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+        <div role="group" aria-label="Filtrar por área" className="flex flex-wrap gap-2">
+          {pilulas.map((p) => {
+            const atual = filtro === p.id;
+            return (
+              <button
+                key={p.id || "todos"}
+                type="button"
+                aria-pressed={atual}
+                onClick={() => setFiltro(p.id)}
+                className={`min-h-10 cursor-pointer rounded-full border px-4 font-titulo text-mini font-bold ${
+                  atual
+                    ? "border-marinho bg-marinho text-branco"
+                    : "border-borda bg-fundo text-marinho hover:border-azul hover:text-azul"
+                }`}
+              >
+                {p.nome}
+              </button>
+            );
+          })}
         </div>
-        <button
-          type="button"
-          className="min-h-11 cursor-pointer px-2 text-nota text-destaque underline underline-offset-4 disabled:cursor-default disabled:text-tinta-suave disabled:no-underline"
-          onClick={() => {
-            setEspecialidade("");
-            setCidade("");
-          }}
-          disabled={!especialidade && !cidade}
-        >
-          Limpar filtros
-        </button>
-      </form>
+      </div>
 
-      <h2 className="sr-only">Perfis</h2>
-      <p aria-live="polite" className="mt-6 text-nota text-tinta-suave">
-        {filtrados.length === 1
-          ? "1 perfil encontrado"
-          : `${filtrados.length} perfis encontrados`}
+      <p aria-live="polite" className="sr-only">
+        {filtrados.length === 1 ? "1 perfil encontrado" : `${filtrados.length} perfis encontrados`}
       </p>
-
-      <p id={avisoId} className="sr-only">
+      <p id={idAviso} className="sr-only">
         Contato indisponível. Em breve: estamos validando os profissionais parceiros.
       </p>
 
-      {filtrados.length === 0 ? (
-        <p className="mt-4 border-t border-fio py-8">
-          Nenhum perfil com esses filtros. Tente outra combinação.
+      {visiveis.length === 0 ? (
+        <p className="mt-6 rounded-card bg-fundo-suave p-6 text-texto-suave">
+          Nenhum perfil encontrado. Tente outra palavra ou outro filtro.
         </p>
       ) : (
-        <ul className="mt-4 border-t border-tinta">
-          {filtrados.map((p) => (
-            <li key={p.id} className="grid gap-4 border-b border-fio py-6 md:grid-cols-[1fr_15rem] md:gap-8">
-              <div>
-                <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <span className="rotulo text-destaque">{nomeEspecialidade(p.especialidade)}</span>
-                  {p.ilustrativo && (
-                    <span className="rounded-sutil border border-argila px-1.5 py-px text-mini font-bold text-argila">
-                      Perfil ilustrativo
-                    </span>
-                  )}
-                </p>
-                <h3 className="mt-2 text-h3">{p.nome}</h3>
-                <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-nota">
-                  <dt className="text-tinta-suave">Local</dt>
-                  <dd>
-                    {p.cidade} — {p.uf}
-                  </dd>
-                  <dt className="text-tinta-suave">Atende</dt>
-                  <dd>{p.publico.map((x) => nomesPublico[x]).join(", ")}</dd>
-                  <dt className="text-tinta-suave">Formato</dt>
-                  <dd>
-                    {p.modalidade.map((m) => (m === "online" ? "on-line" : m)).join(" e ")}
-                    {p.atendeSUS && " · atende pelo SUS"}
-                  </dd>
-                  <dt className="text-tinta-suave">Registro</dt>
-                  <dd>{p.registro}</dd>
-                </dl>
+        <ul
+          className={`mt-6 grid gap-4 ${
+            variante === "home" ? "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5" : "md:grid-cols-2 xl:grid-cols-3"
+          }`}
+        >
+          {visiveis.map((p) => (
+            <li key={p.id} className="card flex gap-4 p-3">
+              <div className="relative h-24 w-20 shrink-0 overflow-hidden rounded-campo bg-azul-bg">
+                {p.foto ? (
+                  <Image src={p.foto} alt="" fill sizes="80px" className="object-cover object-top" />
+                ) : (
+                  <span aria-hidden="true" className="flex h-full w-full items-center justify-center font-titulo text-h3 font-extrabold text-azul-tom">
+                    {iniciais(p.nome)}
+                  </span>
+                )}
               </div>
-              <div className="md:pt-8">
-                <button type="button" className="botao w-full" disabled aria-describedby={avisoId}>
-                  Entrar em contato
-                </button>
-                <p className="mt-2 text-mini text-tinta-suave">
-                  Em breve: estamos validando os profissionais parceiros.
+              <div className="flex min-w-0 flex-1 flex-col">
+                {p.demonstrativo && (
+                  <span className="self-start rounded-full bg-fundo-suave px-2.5 py-0.5 text-[0.6875rem] font-bold whitespace-nowrap text-texto-suave ring-1 ring-borda">
+                    Perfil demonstrativo
+                  </span>
+                )}
+                <h3 className="mt-1.5 text-h4">{p.area}</h3>
+                {variante === "completo" && <p className="text-nota text-texto">{p.nome}</p>}
+                <p className="text-mini text-texto-suave">{p.descricao}</p>
+                {variante === "completo" && (
+                  <p className="mt-1 text-mini text-texto-suave">
+                    {p.registro}
+                    {p.atendeSUS && " · atende pelo SUS"}
+                  </p>
+                )}
+                <p className="mt-auto flex items-center gap-1 pt-1.5 text-mini text-texto-suave">
+                  <MapPin aria-hidden="true" className="h-3.5 w-3.5 text-marinho" />
+                  {p.cidade} - {p.uf}
                 </p>
+                {variante === "completo" && (
+                  <div className="mt-3">
+                    <button type="button" disabled aria-describedby={idAviso} className="botao min-h-10 px-4 text-mini">
+                      Entrar em contato
+                    </button>
+                    <p className="mt-1.5 text-mini text-texto-suave">Em breve: estamos validando os profissionais parceiros.</p>
+                  </div>
+                )}
+                {variante === "home" && (
+                  <p className="mt-1 text-mini font-bold text-texto-suave">Contato: em breve</p>
+                )}
               </div>
             </li>
           ))}

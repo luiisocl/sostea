@@ -11,5 +11,13 @@ export const equipe = [
 export const instituicao = "Nome da instituição de ensino";
 export const orientacao = "Nome do(a) professor(a) orientador(a)";
 
-// E-mail de contato do projeto (aparece no Sobre e na Política de Privacidade).
+// E-mail de contato do projeto (aparece no Sobre, no "Fale conosco" e na Política de Privacidade).
 export const emailContato = "contato@exemplo.com";
+
+// Redes sociais do projeto. Deixe "" enquanto a conta não existir:
+// o ícone aparece no rodapé marcado como "em breve", sem link.
+export const redesSociais = {
+  instagram: "",
+  youtube: "",
+  spotify: "",
+};

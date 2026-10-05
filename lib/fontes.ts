@@ -1,4 +1,4 @@
-import type { Fonte } from "@/components/Editorial";
+import type { Fonte } from "@/components/ui";
 
 // Fontes oficiais usadas no site. Reaproveite estas entradas nas páginas.
 export const fontes = {
@@ -66,6 +66,41 @@ export const fontes = {
     orgao: "Presidência da República",
     titulo: "Lei nº 8.213/1991 — art. 93 (reserva de vagas para pessoas com deficiência)",
     url: "https://www.planalto.gov.br/ccivil_03/leis/l8213cons.htm",
+  },
+  ibgeCenso: {
+    orgao: "IBGE",
+    titulo: "Censo 2022 contou 2,4 milhões de pessoas diagnosticadas com autismo no Brasil",
+    url: "https://educa.ibge.gov.br/jovens/materias-especiais/22700-censo-2022-contou-2-4-milhoes-de-pessoas-diagnosticadas-com-autismo-no-brasil.html",
+  },
+  mdhCenso: {
+    orgao: "Ministério dos Direitos Humanos e da Cidadania",
+    titulo: "Pela primeira vez, IBGE divulga dados sobre pessoas com deficiência no Brasil",
+    url: "https://www.gov.br/mdh/pt-br/assuntos/noticias/2025/maio/pela-primeira-vez-ibge-divulga-dados-sobre-pessoas-com-deficiencia-no-brasil",
+  },
+  amaPi: {
+    orgao: "AMA-PI",
+    titulo: "Associação de Amigos dos Autistas do Piauí",
+    url: "https://amapiaui.com.br/",
+  },
+  ceir: {
+    orgao: "CEIR",
+    titulo: "Centro Integrado de Reabilitação — serviços",
+    url: "https://www.reabilitar.org.br/ceir-acesse-nossos-servicos/",
+  },
+  cetea: {
+    orgao: "Governo do Estado do Piauí",
+    titulo: "Centro de atendimento para pessoas com autismo (Cetea)",
+    url: "https://www.pi.gov.br/centro-de-atendimento-para-pessoas-com-autismo-avanca-no-piaui/",
+  },
+  defensoriaPi: {
+    orgao: "Defensoria Pública do Estado do Piauí",
+    titulo: "Site oficial",
+    url: "https://www.defensoria.pi.def.br/",
+  },
+  cvv: {
+    orgao: "CVV — Centro de Valorização da Vida",
+    titulo: "Apoio emocional gratuito, 24 horas (ligue 188)",
+    url: "https://cvv.org.br",
   },
   lgpd: {
     orgao: "Presidência da República",

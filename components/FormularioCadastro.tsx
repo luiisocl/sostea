@@ -103,19 +103,19 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
         ref={sucessoRef}
         tabIndex={-1}
         role="status"
-        className="border-t-4 border-sucesso bg-papel-escuro p-6 focus:outline-none sm:p-8"
+        className="border-t-4 border-sucesso bg-fundo-suave p-6 focus:outline-none sm:p-8"
       >
         <h2 className="text-h2">Cadastro feito. Obrigado!</h2>
         <p className="mt-4 max-w-texto">
           Recebemos seus dados. Quando houver novidades no SOSTEA, vamos avisar pelo e-mail que você
           informou.
         </p>
-        <p className="mt-3 max-w-texto text-nota text-tinta-suave">
+        <p className="mt-3 max-w-texto text-nota text-texto-suave">
           Você pode pedir a exclusão dos seus dados a qualquer momento. Veja como na{" "}
           <Link href="/privacidade">Política de Privacidade</Link>.
         </p>
         <p className="mt-6">
-          <Link href="/dicas">Enquanto isso, leia as dicas →</Link>
+          <Link href="/biblioteca">Enquanto isso, explore a biblioteca →</Link>
         </p>
       </div>
     );
@@ -130,9 +130,9 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
   return (
     <form noValidate onSubmit={enviar} className="space-y-7" aria-describedby={!ativo ? "aviso-inativo" : undefined}>
       {!ativo && (
-        <div id="aviso-inativo" className="border-l-2 border-argila bg-papel-escuro px-4 py-3 text-nota">
+        <div id="aviso-inativo" className="border-l-2 border-alerta-borda bg-fundo-suave px-4 py-3 text-nota">
           <p className="font-bold">O cadastro ainda não está ativo.</p>
-          <p className="mt-1 text-tinta-suave">
+          <p className="mt-1 text-texto-suave">
             Estamos terminando de configurar o sistema. Volte em breve. Você pode ver o formulário,
             mas o envio está desligado por enquanto.
           </p>
@@ -144,7 +144,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
           ref={resumoRef}
           tabIndex={-1}
           role="alert"
-          className="border-l-4 border-erro bg-papel-escuro px-4 py-3 focus:outline-none"
+          className="border-l-4 border-erro bg-fundo-suave px-4 py-3 focus:outline-none"
         >
           <p className="font-bold text-erro">{mensagemGeral}</p>
           {listaErros.length > 0 && (
@@ -245,9 +245,9 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
         className="focus:outline-none"
       >
         <legend className="mb-2 font-bold">
-          Você é <span className="font-normal text-tinta-suave">(escolha uma opção)</span>
+          Você é <span className="font-normal text-texto-suave">(escolha uma opção)</span>
         </legend>
-        <div className="divide-y divide-fio border-y border-fio">
+        <div className="divide-y divide-borda border-y border-borda">
           {perfis.map((p) => (
             <label
               key={p.id}
@@ -258,7 +258,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
                 name="perfil"
                 value={p.id}
                 disabled={desabilitado}
-                className="h-5 w-5 shrink-0 accent-destaque"
+                className="h-5 w-5 shrink-0 accent-azul"
               />
               {p.nome}
             </label>
@@ -272,7 +272,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
         rotulo={
           <>
             O que você gostaria de encontrar no SOSTEA?{" "}
-            <span className="font-normal text-tinta-suave">(opcional)</span>
+            <span className="font-normal text-texto-suave">(opcional)</span>
           </>
         }
         erro={erros.interesse}
@@ -306,11 +306,11 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
             disabled={desabilitado}
             aria-invalid={erros.consentimento ? true : undefined}
             aria-describedby={descricao("consentimento")}
-            className="mt-1 h-5 w-5 shrink-0 accent-destaque"
+            className="mt-1 h-5 w-5 shrink-0 accent-azul"
           />
           <span>
             Li e concordo com a{" "}
-            <Link href="/privacidade" target="_blank">
+            <Link href="/privacidade" target="_blank" className="underline">
               Política de Privacidade
               <span className="sr-only"> (abre em nova aba)</span>
             </Link>
@@ -322,8 +322,8 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
         )}
       </div>
 
-      <div className="border-t border-tinta pt-6">
-        <button type="submit" className="botao" disabled={desabilitado}>
+      <div className="border-t border-borda pt-6">
+        <button type="submit" className="botao botao-escuro" disabled={desabilitado}>
           {estado === "enviando" ? "Enviando…" : "Fazer cadastro"}
         </button>
       </div>
@@ -350,7 +350,7 @@ function Campo({
         {rotulo}
       </label>
       {children}
-      {dica && <p className="mt-1.5 text-mini text-tinta-suave">{dica}</p>}
+      {dica && <p className="mt-1.5 text-mini text-texto-suave">{dica}</p>}
       {erro && <MensagemErro id={`erro-${id}`} texto={erro} />}
     </div>
   );
