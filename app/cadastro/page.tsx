@@ -7,7 +7,7 @@ import { supabaseConfigurado } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Cadastro",
-  description: "Cadastre-se para receber novidades do Conexões que Acolhem. Pedimos só o essencial.",
+  description: "Cadastre-se para receber novidades do Conexões que Incluem. Pedimos só o essencial.",
 };
 
 // Lê as variáveis de ambiente a cada acesso, para o aviso refletir a configuração atual.
@@ -18,7 +18,7 @@ export default function Cadastro() {
 
   return (
     <>
-      <CabecalhoPagina rotulo="Acessar" titulo="Faça parte do Conexões que Acolhem" icone={UserRound}>
+      <CabecalhoPagina rotulo="Acessar" titulo="Faça parte do Conexões que Incluem" icone={UserRound}>
         <p>
           Deixe seu contato para receber novidades: novos conteúdos, a abertura do diretório de
           profissionais e outras seções. Leva menos de um minuto.

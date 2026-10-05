@@ -92,7 +92,7 @@ export function Cabecalho() {
         <Link
           href="/"
           className="shrink-0 no-underline"
-          aria-label="Conexões que Acolhem — página inicial"
+          aria-label="Conexões que Incluem — página inicial"
         >
           <Logo />
         </Link>

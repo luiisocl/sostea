@@ -6,7 +6,7 @@ import { emailContato, equipe, instituicao, orientacao } from "@/data/equipe";
 
 export const metadata: Metadata = {
   title: "Sobre o projeto",
-  description: "A missão do Conexões que Acolhem, seus princípios e quem faz o projeto.",
+  description: "A missão do Conexões que Incluem, seus princípios e quem faz o projeto.",
 };
 
 const secoesPagina = [
@@ -48,7 +48,7 @@ const principios: { titulo: string; texto: string; icone: LucideIcon; cor: Cor }
 export default function Sobre() {
   return (
     <>
-      <CabecalhoPagina rotulo="Sobre" titulo="Sobre o Conexões que Acolhem" icone={Info}>
+      <CabecalhoPagina rotulo="Sobre" titulo="Sobre o Conexões que Incluem" icone={Info}>
         <p>
           Um ponto de partida confiável, feito em Teresina - PI, para quem acabou de
           receber um diagnóstico, para quem cuida e para quem quer aprender.
@@ -64,7 +64,7 @@ export default function Sobre() {
           <Secao id="missao" titulo="Missão">
             <p>
               Informação sobre autismo existe, mas muitas vezes está espalhada, cheia de termos
-              técnicos ou misturada com promessas sem base. O Conexões que Acolhem quer reunir o essencial num só
+              técnicos ou misturada com promessas sem base. O Conexões que Incluem quer reunir o essencial num só
               lugar, com linguagem clara e fontes confiáveis.
             </p>
             <p>

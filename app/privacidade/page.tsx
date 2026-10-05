@@ -7,7 +7,7 @@ import { fontes } from "@/lib/fontes";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade",
-  description: "Como o Conexões que Acolhem trata os dados do cadastro, de acordo com a LGPD.",
+  description: "Como o Conexões que Incluem trata os dados do cadastro, de acordo com a LGPD.",
 };
 
 const secoesPagina = [
@@ -25,7 +25,7 @@ export default function Privacidade() {
       <CabecalhoPagina rotulo="Privacidade" titulo="Política de Privacidade" icone={ShieldCheck} cor="verde">
         <p>
           Em poucas palavras: pedimos só o necessário, usamos apenas para falar com você sobre o
-          Conexões que Acolhem e apagamos quando você pedir.
+          Conexões que Incluem e apagamos quando você pedir.
         </p>
       </CabecalhoPagina>
 
@@ -53,7 +53,7 @@ export default function Privacidade() {
           <Secao id="para-que" titulo="Para que usamos">
             <ListaMarcada
               itens={[
-                "Enviar novidades sobre o Conexões que Acolhem, como novos conteúdos e seções.",
+                "Enviar novidades sobre o Conexões que Incluem, como novos conteúdos e seções.",
                 "Entender, de forma geral, quem usa o site e o que interessa a cada público.",
               ]}
             />
@@ -93,7 +93,7 @@ export default function Privacidade() {
 
           <Secao id="cookies" titulo="Cookies e preferências">
             <p>
-              O Conexões que Acolhem não usa cookies de rastreamento nem de publicidade. As preferências de
+              O Conexões que Incluem não usa cookies de rastreamento nem de publicidade. As preferências de
               tamanho do texto e de redução de estímulos ficam salvas apenas no seu navegador e não
               são enviadas para nós.
             </p>

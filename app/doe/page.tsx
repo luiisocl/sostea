@@ -6,15 +6,15 @@ import { destinos } from "@/lib/doacoes";
 
 export const metadata: Metadata = {
   title: "Doe",
-  description: "Como apoiar o Conexões que Acolhem e para onde vão as doações. Doações em breve.",
+  description: "Como apoiar o Conexões que Incluem e para onde vão as doações. Doações em breve.",
 };
 
 export default function Doe() {
   return (
     <>
-      <CabecalhoPagina rotulo="Apoie" titulo="Apoie o Conexões que Acolhem" icone={HandHeart} cor="rosa">
+      <CabecalhoPagina rotulo="Apoie" titulo="Apoie o Conexões que Incluem" icone={HandHeart} cor="rosa">
         <p>
-          O Conexões que Acolhem é gratuito e vai continuar assim. As doações vão ajudar a manter o projeto e a
+          O Conexões que Incluem é gratuito e vai continuar assim. As doações vão ajudar a manter o projeto e a
           melhorar o conteúdo. Esta página ainda não recebe valores.
         </p>
       </CabecalhoPagina>

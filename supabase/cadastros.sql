@@ -1,4 +1,4 @@
--- Conexões que Acolhem — tabela de cadastros
+-- Conexões que Incluem — tabela de cadastros
 -- Cole tudo no SQL Editor do Supabase e clique em "Run".
 
 create table if not exists public.cadastros (
@@ -18,7 +18,7 @@ create table if not exists public.cadastros (
 );
 
 comment on table public.cadastros is
-  'Cadastros do site Conexões que Acolhem. Não armazenar dados de saúde (LGPD, dados sensíveis).';
+  'Cadastros do site Conexões que Incluem. Não armazenar dados de saúde (LGPD, dados sensíveis).';
 
 -- Um cadastro por e-mail (sem diferenciar maiúsculas/minúsculas)
 create unique index if not exists cadastros_email_unico on public.cadastros (lower(email));

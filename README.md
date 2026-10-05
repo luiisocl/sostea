@@ -1,4 +1,4 @@
-# Conexões que Acolhem
+# Conexões que Incluem
 
 Site informativo sobre o Transtorno do Espectro Autista (TEA) para pessoas autistas, familiares, cuidadores e quem quer aprender. Projeto acadêmico.
 

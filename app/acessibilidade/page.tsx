@@ -7,7 +7,7 @@ import { emailContato } from "@/data/equipe";
 
 export const metadata: Metadata = {
   title: "Acessibilidade",
-  description: "Recursos de acessibilidade do Conexões que Acolhem: reduzir estímulos, tamanho do texto e navegação por teclado.",
+  description: "Recursos de acessibilidade do Conexões que Incluem: reduzir estímulos, tamanho do texto e navegação por teclado.",
 };
 
 export default function Acessibilidade() {
@@ -15,7 +15,7 @@ export default function Acessibilidade() {
     <>
       <CabecalhoPagina rotulo="Acessibilidade" titulo="Um site para todas as pessoas" icone={Accessibility}>
         <p>
-          O Conexões que Acolhem foi pensado para ter baixa carga sensorial e ser fácil de usar. Ajuste a leitura
+          O Conexões que Incluem foi pensado para ter baixa carga sensorial e ser fácil de usar. Ajuste a leitura
           do seu jeito.
         </p>
       </CabecalhoPagina>
