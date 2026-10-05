@@ -1,4 +1,4 @@
-// Logo do SOSTEA: três círculos sobrepostos (azul-marinho, azul-claro e verde-água).
+// Logo do Conexões que Acolhem: três círculos sobrepostos (azul-marinho, azul-claro e verde-água).
 // Representam pessoas diferentes que se encontram — família, escola e rede de apoio.
 export function SimboloLogo({ className = "", claro = false }: { className?: string; claro?: boolean }) {
   return (
@@ -17,18 +17,20 @@ export function Logo({ claro = false }: { claro?: boolean }) {
       <SimboloLogo className="h-11 w-11 shrink-0" claro={claro} />
       <span className="flex flex-col">
         <span
-          className={`font-titulo text-[1.625rem] leading-none font-extrabold tracking-tight ${
+          className={`font-titulo text-[1.2rem] leading-[1.05] font-extrabold tracking-tight ${
             claro ? "text-branco" : "text-marinho"
           }`}
         >
-          SOSTEA
+          Conexões
+          <br />
+          que Acolhem
         </span>
         <span
           className={`mt-1 font-titulo text-[0.625rem] leading-none font-bold uppercase tracking-[0.14em] ${
             claro ? "text-azul-circ" : "text-azul"
           }`}
         >
-          Informação que acolhe
+          Informação sobre TEA
         </span>
       </span>
     </span>

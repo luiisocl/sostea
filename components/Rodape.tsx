@@ -15,7 +15,7 @@ export function Rodape() {
   return (
     <footer className="mt-20 bg-marinho-escuro text-branco">
       <div className="container-pagina flex flex-col gap-8 py-10 lg:flex-row lg:items-center lg:gap-10">
-        <Link href="/" className="shrink-0 no-underline" aria-label="SOSTEA — página inicial">
+        <Link href="/" className="shrink-0 no-underline" aria-label="Conexões que Acolhem — página inicial">
           <Logo claro />
         </Link>
 
@@ -47,7 +47,7 @@ export function Rodape() {
                     className="flex h-10 w-10 items-center justify-center rounded-full text-branco hover:bg-branco/10 hover:text-branco"
                   >
                     <Icone className="h-5.5 w-5.5" />
-                    <span className="sr-only">{nome} do SOSTEA (abre em nova aba)</span>
+                    <span className="sr-only">{nome} do Conexões que Acolhem (abre em nova aba)</span>
                   </a>
                 ) : (
                   <span
@@ -86,7 +86,7 @@ export function Rodape() {
             ))}
           </p>
           <p>
-            Conteúdo informativo. Não substitui avaliação de profissionais de saúde. SOSTEA —
+            Conteúdo informativo. Não substitui avaliação de profissionais de saúde. Conexões que Acolhem —
             projeto acadêmico, {new Date().getFullYear()}.
           </p>
         </div>

@@ -25,7 +25,7 @@ export const pix = {
 export const destinos = [
   {
     titulo: "Manter o site no ar",
-    texto: "Domínio, hospedagem e ferramentas necessárias para o SOSTEA continuar funcionando.",
+    texto: "Domínio, hospedagem e ferramentas necessárias para o Conexões que Acolhem continuar funcionando.",
   },
   {
     titulo: "Revisão do conteúdo",

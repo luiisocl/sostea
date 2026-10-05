@@ -7,7 +7,7 @@ import type { Fonte } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Fontes e referências",
-  description: "Instituições, leis e materiais oficiais usados como base para os conteúdos do SOSTEA.",
+  description: "Instituições, leis e materiais oficiais usados como base para os conteúdos do Conexões que Acolhem.",
 };
 
 const grupos: { titulo: string; descricao: string; cor: Cor; itens: Fonte[] }[] = [
@@ -59,7 +59,7 @@ export default function FontesReferencias() {
     <>
       <CabecalhoPagina rotulo="Dados e curiosidades" titulo="Fontes e referências" icone={BookOpen}>
         <p>
-          Todo o conteúdo do SOSTEA se baseia em informações gerais e bem estabelecidas, de fontes
+          Todo o conteúdo do Conexões que Acolhem se baseia em informações gerais e bem estabelecidas, de fontes
           oficiais. Aqui estão todas elas, organizadas por tema.
         </p>
       </CabecalhoPagina>

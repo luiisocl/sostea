@@ -9,7 +9,7 @@ import { listarProfissionais } from "@/lib/profissionais";
 
 export const metadata: Metadata = {
   title: "Busca",
-  description: "Busque conteúdos, temas e serviços no SOSTEA.",
+  description: "Busque conteúdos, temas e serviços no Conexões que Acolhem.",
 };
 
 // Páginas do site que também aparecem na busca.
@@ -23,7 +23,7 @@ const paginas = [
   { titulo: "Para educadores", resumo: "Estratégias para professores e inclusão escolar.", href: "/para-educadores" },
   { titulo: "Para cuidadores", resumo: "Cuidado diário: higiene, alimentação, sono e crises.", href: "/para-cuidadores" },
   { titulo: "Profissionais", resumo: "Diretório de profissionais em Teresina (em construção).", href: "/profissionais" },
-  { titulo: "Cadastro", resumo: "Receba novidades do SOSTEA.", href: "/cadastro" },
+  { titulo: "Cadastro", resumo: "Receba novidades do Conexões que Acolhem.", href: "/cadastro" },
   { titulo: "Acessibilidade", resumo: "Reduzir estímulos e tamanho do texto.", href: "/acessibilidade" },
   { titulo: "Doe", resumo: "Como apoiar o projeto.", href: "/doe" },
 ];
@@ -49,7 +49,7 @@ export default async function Busca({ searchParams }: PageProps<"/busca">) {
 
   return (
     <>
-      <CabecalhoPagina rotulo="Busca" titulo={consulta ? `Resultados para “${consulta}”` : "Buscar no SOSTEA"} icone={Search}>
+      <CabecalhoPagina rotulo="Busca" titulo={consulta ? `Resultados para “${consulta}”` : "Buscar no Conexões que Acolhem"} icone={Search}>
         <form action="/busca" role="search" className="mt-2 flex max-w-xl gap-2">
           <label htmlFor="busca-pagina" className="sr-only">
             Buscar conteúdos, temas ou serviços

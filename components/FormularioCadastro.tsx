@@ -107,7 +107,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
       >
         <h2 className="text-h2">Cadastro feito. Obrigado!</h2>
         <p className="mt-4 max-w-texto">
-          Recebemos seus dados. Quando houver novidades no SOSTEA, vamos avisar pelo e-mail que você
+          Recebemos seus dados. Quando houver novidades no Conexões que Acolhem, vamos avisar pelo e-mail que você
           informou.
         </p>
         <p className="mt-3 max-w-texto text-nota text-texto-suave">
@@ -271,7 +271,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
         id="interesse"
         rotulo={
           <>
-            O que você gostaria de encontrar no SOSTEA?{" "}
+            O que você gostaria de encontrar no Conexões que Acolhem?{" "}
             <span className="font-normal text-texto-suave">(opcional)</span>
           </>
         }
@@ -314,7 +314,7 @@ export function FormularioCadastro({ ativo }: { ativo: boolean }) {
               Política de Privacidade
               <span className="sr-only"> (abre em nova aba)</span>
             </Link>
-            . Autorizo o SOSTEA a guardar meus dados para enviar novidades do projeto.
+            . Autorizo o Conexões que Acolhem a guardar meus dados para enviar novidades do projeto.
           </span>
         </label>
         {erros.consentimento && (

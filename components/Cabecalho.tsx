@@ -92,7 +92,7 @@ export function Cabecalho() {
         <Link
           href="/"
           className="shrink-0 no-underline"
-          aria-label="SOSTEA — página inicial"
+          aria-label="Conexões que Acolhem — página inicial"
         >
           <Logo />
         </Link>

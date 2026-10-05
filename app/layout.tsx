@@ -29,8 +29,8 @@ const caveat = Caveat({
 
 export const metadata: Metadata = {
   title: {
-    default: "SOSTEA — Informação que acolhe",
-    template: "%s · SOSTEA",
+    default: "Conexões que Acolhem — Informação sobre TEA",
+    template: "%s · Conexões que Acolhem",
   },
   description:
     "Orientações práticas, conteúdos educativos e uma rede de apoio para o dia a dia de crianças com Transtorno do Espectro Autista (TEA) em Teresina - PI.",
